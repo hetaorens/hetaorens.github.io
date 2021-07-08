@@ -10,6 +10,15 @@
 
     <!--Description-->
     
+        <meta name="description" content="[BJDCTF2020]编码与调制hint中可以大概了解到曼切斯特编码:
+
+
+
+
+在位中间，信号由高向低跳变表示数据0，信号由低向高跳变表示数据1:
+可以写出解码程序:
+12345678910111213x=0x2559659965656A9A65656996696965A6695669A9695A">
+    
 
     <!--Author-->
     
@@ -18,7 +27,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="ANDERS0N"/>
+        <meta property="og:title" content="BJDCTF2020 编码与调制"/>
     
 
     <!--Open Graph Description-->
@@ -29,7 +38,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
@@ -43,7 +52,7 @@
 
     <!-- Title -->
     
-    <title>Archives - ANDERS0N</title>
+    <title>BJDCTF2020 编码与调制 - ANDERS0N</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -132,9 +141,7 @@
 <div class="container">
 
     <!-- Main Content -->
-    
-
-<div class="row">
+    <div class="row">
     <div class="col-sm-12">
 
         <!--Title and Logo-->
@@ -142,52 +149,60 @@
     <div class="logo">
         <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
         
-            <h1 id="main-title" class="title">Archives</h1>
-        
     </div>
 </header>
 
-        <section class="main archive-container">
+        <section class="main">
             
-                <div class="archive-post">
-    <a href="/2021/07/07/my-new-post/">
-        <span class="archive-date">
-            Jul 2021
-        </span>
-        my new post
-    </a>
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2021/07/08/%5BBJDCTF2020%5DCoding_and_modulation/">
+                BJDCTF2020 编码与调制
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2021-07-08</span>
+            
+            
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h1 id="BJDCTF2020-编码与调制"><a href="#BJDCTF2020-编码与调制" class="headerlink" title="[BJDCTF2020]编码与调制"></a>[BJDCTF2020]编码与调制</h1><p>hint中可以大概了解到曼切斯特编码:</p>
+<img src="C:\Users\Hetaoren4\Downloads\Compressed\I'm hint!!!.png" style="zoom: 67%;" />
+
+
+
+<p>在位中间，信号由高向低跳变表示数据0，信号由低向高跳变表示数据1:</p>
+<p>可以写出解码程序:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">x=<span class="number">0x2559659965656A9A65656996696965A6695669A9695A699569666A5A6A6569666A59695A69AA696569666AA6</span></span><br><span class="line"><span class="comment"># print(len(bin(x)))</span></span><br><span class="line"><span class="keyword">import</span> libnum <span class="keyword">as</span> li</span><br><span class="line">t=<span class="built_in">str</span>(<span class="built_in">bin</span>(x))[<span class="number">2</span>:]</span><br><span class="line"><span class="built_in">print</span>(t)</span><br><span class="line">ans=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(t),<span class="number">2</span>):</span><br><span class="line">    <span class="keyword">if</span> t[i:i+<span class="number">2</span>]==<span class="string">&#x27;01&#x27;</span>:</span><br><span class="line">        ans+=<span class="string">&#x27;0&#x27;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        ans+=<span class="string">&#x27;1&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(ans)</span><br><span class="line"><span class="built_in">print</span>(li.b2s(ans))</span><br></pre></td></tr></table></figure>
+
+<p>运行结果:b’BJD{DifManchestercode}’</p>
+
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
 </div>
-            
-                <div class="archive-post">
-    <a href="/2021/07/08/BUU%5BHDCTF2019%5Dtogether/">
-        <span class="archive-date">
-            Jul 2021
-        </span>
-        BUU[HDCTF2019]together
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2021/07/07/BUU%5BBJDCTF2020%5DPolybius/">
-        <span class="archive-date">
-            Jul 2021
-        </span>
-        BUU[BJDCTF2020]Polybius
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2021/07/08/%5BBJDCTF2020%5DCoding_and_modulation/">
-        <span class="archive-date">
-            Jul 2021
-        </span>
-        BJDCTF2020 编码与调制
-    </a>
-</div>
-            
         </section>
+
     </div>
 </div>
+
 
 </div>
 
