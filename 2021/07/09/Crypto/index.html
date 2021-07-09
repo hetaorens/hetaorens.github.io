@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>my new post | ANDERS0N</title>
+  <title>GKCTF 2021Random | ANDERS0N</title>
 
   
     
@@ -546,14 +546,14 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/9.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/1.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="title-box">
     <span class="title">
-      my new post
+      GKCTF 2021Random
     </span>
   </div>
   
@@ -570,7 +570,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-07-07</span>
+        <span class="post-time">2021-07-09</span>
       </div>
       
       <div class="post-tags-categories">
@@ -578,7 +578,17 @@
         
       </div>
       <div class="post-content">
-        
+        <h2 id="GKCTF-2021-Random"><a href="#GKCTF-2021-Random" class="headerlink" title="[GKCTF 2021]Random"></a>[GKCTF 2021]Random</h2><p>flag是上述随机数生成后再生成一个32位（以位为单位）的随机数</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># import random</span></span><br><span class="line"><span class="comment"># from hashlib import md5</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># def get_mask():</span></span><br><span class="line"><span class="comment">#     file = open(r&quot;G:\Desktop\rar\random.txt&quot;,&quot;r&quot;)</span></span><br><span class="line"><span class="comment">#     for i in range(104):</span></span><br><span class="line"><span class="comment">#         file.write(str(random.getrandbits(32))+&quot;\n&quot;)</span></span><br><span class="line"><span class="comment">#         file.write(str(random.getrandbits(64))+&quot;\n&quot;)</span></span><br><span class="line"><span class="comment">#         file.write(str(random.getrandbits(96))+&quot;\n&quot;)</span></span><br><span class="line"><span class="comment">#     file.close()</span></span><br><span class="line"><span class="comment"># get_mask()</span></span><br><span class="line"><span class="comment"># flag = md5(str(random.getrandbits(32)).encode()).hexdigest()</span></span><br><span class="line"><span class="comment"># print(flag)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> md5</span><br><span class="line"><span class="keyword">from</span> randcrack <span class="keyword">import</span> RandCrack</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span>(<span class="params">l,i</span>):</span></span><br><span class="line">    a=[]       <span class="comment">#32 64 96</span></span><br><span class="line">    a.append(l[i]) <span class="comment">#32位</span></span><br><span class="line">    b1=l[i+<span class="number">1</span>]&gt;&gt;<span class="number">32</span></span><br><span class="line">    b2=l[i+<span class="number">1</span>]&amp;(<span class="number">2</span>**<span class="number">32</span>-<span class="number">1</span>)</span><br><span class="line">    a.append(b2)<span class="comment">#64位的低32位</span></span><br><span class="line">    a.append(b1)<span class="comment">#64位的高32位</span></span><br><span class="line">    b1=l[i+<span class="number">2</span>]&gt;&gt;<span class="number">64</span></span><br><span class="line">    b2=(l[i+<span class="number">2</span>]&amp;(<span class="number">2</span>**<span class="number">64</span>-<span class="number">1</span>))&gt;&gt;<span class="number">32</span></span><br><span class="line">    b3=l[i+<span class="number">2</span>]&amp;(<span class="number">2</span>**<span class="number">32</span>-<span class="number">1</span>)</span><br><span class="line">    a.append(b3)<span class="comment">#96位的低32位</span></span><br><span class="line">    a.append(b2)<span class="comment">#96位的中32位</span></span><br><span class="line">    a.append(b1)<span class="comment">#96位的高32位</span></span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">r&#x27;G:\Desktop\rar\random.txt&#x27;</span>,<span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    l=f.readlines()</span><br><span class="line">l=[<span class="built_in">int</span>(i.strip()) <span class="keyword">for</span> i <span class="keyword">in</span> l]</span><br><span class="line">ll=[]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(l),<span class="number">3</span>):</span><br><span class="line">    ll+=foo(l,i)</span><br><span class="line">rc=RandCrack()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> ll:</span><br><span class="line">    rc.submit(i)</span><br><span class="line">aa=rc.predict_getrandbits(<span class="number">32</span>)</span><br><span class="line"><span class="built_in">print</span>(aa)</span><br><span class="line"><span class="built_in">print</span>(md5(<span class="built_in">str</span>(aa).encode()).hexdigest())</span><br><span class="line"><span class="comment"># print(&#x27;flag&#123;%s&#125;&#x27;%md5(str(aa).encode()).hexdigest())</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#每624个32位数字给生成器喂食，题目正好给了这么多，(32+64+96)*104=624*32</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>python的rng用的mt19937，考烂了</p>
+<p>用randcrack模块梭</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> md5</span><br><span class="line"><span class="keyword">from</span> randcrack <span class="keyword">import</span> RandCrack</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span>(<span class="params">l,i</span>):</span></span><br><span class="line">    a=[]</span><br><span class="line">    a.append(l[i])</span><br><span class="line">    b1=l[i+<span class="number">1</span>]&gt;&gt;<span class="number">32</span></span><br><span class="line">    b2=l[i+<span class="number">1</span>]&amp;(<span class="number">2</span>**<span class="number">32</span>-<span class="number">1</span>)</span><br><span class="line">    a.append(b2)</span><br><span class="line">    a.append(b1)</span><br><span class="line">    b1=l[i+<span class="number">2</span>]&gt;&gt;<span class="number">64</span></span><br><span class="line">    b2=(l[i+<span class="number">2</span>]&amp;(<span class="number">2</span>**<span class="number">64</span>-<span class="number">1</span>))&gt;&gt;<span class="number">32</span></span><br><span class="line">    b3=l[i+<span class="number">2</span>]&amp;(<span class="number">2</span>**<span class="number">32</span>-<span class="number">1</span>)</span><br><span class="line">    a.append(b3)</span><br><span class="line">    a.append(b2)</span><br><span class="line">    a.append(b1)</span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">r&#x27;random.txt&#x27;</span>,<span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    l=f.readlines()</span><br><span class="line">l=[<span class="built_in">int</span>(i.strip()) <span class="keyword">for</span> i <span class="keyword">in</span> l]</span><br><span class="line">ll=[]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(l),<span class="number">3</span>):</span><br><span class="line">    ll+=foo(l,i)</span><br><span class="line">rc=RandCrack()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> ll:</span><br><span class="line">    rc.submit(i)</span><br><span class="line">aa=rc.predict_getrandbits(<span class="number">32</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;flag&#123;%s&#125;&#x27;</span>%md5(<span class="built_in">str</span>(aa).encode()).hexdigest())</span><br></pre></td></tr></table></figure>
+
+<p>结果:GKCTF{14c71fec812b754b2061a35a4f6d8421}</p>
+
       </div>
       
         <div class="copyright">
@@ -588,7 +598,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2021/07/07/my-new-post/" target="_blank" title="my new post">http://example.com/2021/07/07/my-new-post/</a>
+    <a href="/2021/07/09/Crypto/" target="_blank" title="GKCTF 2021Random">http://example.com/2021/07/09/Crypto/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -608,23 +618,40 @@
 
   
   <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/8.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/5.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/07/07/BUU%5BBJDCTF2020%5DPolybius/" class="post-nav-link">
+    <a href="/2021/07/09/RRRRsa/" class="post-nav-link">
       <div class="title">
         <i class="fa fa-angle-left"></i> Prev:
-        <div>BUU[BJDCTF2020]Polybius</div>
+        <div>GKCTF 2021 RRRRsa</div>
       </div>
       
       <!-- <div class="content">
-        BUU[BJDCTF2020]Polybius文件类容:
-密文：ouauuuoooeeaaiaeauieuooeeiea
+        [GKCTF 2021]RRRRsa题目
+123456789101112131415161718192021222324
       </div> -->
     </a>
   </div>
 
 
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/2021/07/09/buuEasyProgram/" class="post-nav-link">
+      <div class="title">
+        Next: <i class="fa fa-angle-right"></i>
+        <div>buuEasyProgram</div>
+      </div>
+      <!-- <div class="content">
+        buuEasyProgram一个简单的异或加密还原一下就可以了.
+Important properties of XOR
+      </div> -->
+    </a>
+  </div>
 
 </div>
 
