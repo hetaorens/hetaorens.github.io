@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>AFCTF2018MagicNum</title>
+      <link href="/2021/07/11/AFCTF2018MagicNum/"/>
+      <url>/2021/07/11/AFCTF2018MagicNum/</url>
+      
+        <content type="html"><![CDATA[<h2 id="AFCTF2018MagicNum"><a href="#AFCTF2018MagicNum" class="headerlink" title="AFCTF2018MagicNum"></a>AFCTF2018MagicNum</h2><p>题目:where_is_flag</p><p>72065910510177138000000000000000.000000<br>71863209670811371000000.000000<br>18489682625412760000000000000000.000000<br>72723257588050687000000.000000<br>4674659167469766200000000.000000<br>19061698837499292000000000000000000000.000000</p><p>显然是从浮点数转字节:</p><p>解秘脚本:</p><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> struct <span class="keyword">import</span> pack</span><br><span class="line">msg=<span class="string">&#x27;&#x27;&#x27;72065910510177138000000000000000.000000</span></span><br><span class="line"><span class="string">71863209670811371000000.000000</span></span><br><span class="line"><span class="string">18489682625412760000000000000000.000000</span></span><br><span class="line"><span class="string">72723257588050687000000.000000</span></span><br><span class="line"><span class="string">4674659167469766200000000.000000</span></span><br><span class="line"><span class="string">19061698837499292000000000000000000000.000000&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> msg.split(<span class="string">&#x27;\n&#x27;</span>):</span><br><span class="line">    <span class="comment"># print(i)</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">str</span>(pack(<span class="string">&#x27;f&#x27;</span>, <span class="built_in">float</span>(i)))[<span class="number">2</span>:-<span class="number">1</span>],end=<span class="string">&quot;&quot;</span>)</span><br></pre></td></tr></table></figure><p>结果:afctf{sec_is_everywhere}</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>GKCTF 2021 RRRRsa</title>
       <link href="/2021/07/09/RRRRsa/"/>
       <url>/2021/07/09/RRRRsa/</url>
