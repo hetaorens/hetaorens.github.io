@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>AFCTF2018MagicNum | ANDERS0N</title>
+  <title>One Secret, Two encryption | ANDERS0N</title>
 
   
     
@@ -546,14 +546,14 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/9.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/3.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="title-box">
     <span class="title">
-      AFCTF2018MagicNum
+      One Secret, Two encryption
     </span>
   </div>
   
@@ -578,13 +578,12 @@
         
       </div>
       <div class="post-content">
-        <h2 id="AFCTF2018MagicNum"><a href="#AFCTF2018MagicNum" class="headerlink" title="AFCTF2018MagicNum"></a>AFCTF2018MagicNum</h2><p>题目:where_is_flag</p>
-<p>72065910510177138000000000000000.000000<br>71863209670811371000000.000000<br>18489682625412760000000000000000.000000<br>72723257588050687000000.000000<br>4674659167469766200000000.000000<br>19061698837499292000000000000000000000.000000</p>
-<p>显然是从浮点数转字节:</p>
-<p>解秘脚本:</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> struct <span class="keyword">import</span> pack</span><br><span class="line">msg=<span class="string">&#x27;&#x27;&#x27;72065910510177138000000000000000.000000</span></span><br><span class="line"><span class="string">71863209670811371000000.000000</span></span><br><span class="line"><span class="string">18489682625412760000000000000000.000000</span></span><br><span class="line"><span class="string">72723257588050687000000.000000</span></span><br><span class="line"><span class="string">4674659167469766200000000.000000</span></span><br><span class="line"><span class="string">19061698837499292000000000000000000000.000000&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> msg.split(<span class="string">&#x27;\n&#x27;</span>):</span><br><span class="line">    <span class="comment"># print(i)</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">str</span>(pack(<span class="string">&#x27;f&#x27;</span>, <span class="built_in">float</span>(i)))[<span class="number">2</span>:-<span class="number">1</span>],end=<span class="string">&quot;&quot;</span>)</span><br></pre></td></tr></table></figure>
+        <h1 id="AFCTF2018-One-Secret-Two-encryption"><a href="#AFCTF2018-One-Secret-Two-encryption" class="headerlink" title="[AFCTF2018]One Secret, Two encryption"></a>[AFCTF2018]One Secret, Two encryption</h1><h4 id="在线公钥解析网站"><a href="#在线公钥解析网站" class="headerlink" title="在线公钥解析网站:"></a>在线公钥解析网站:</h4><h4 id="https-www-ssleye-com-pub-asysi-html"><a href="#https-www-ssleye-com-pub-asysi-html" class="headerlink" title="https://www.ssleye.com/pub_asysi.html"></a><a target="_blank" rel="noopener" href="https://www.ssleye.com/pub_asysi.html">https://www.ssleye.com/pub_asysi.html</a></h4><p>解析之后获得:e1,e2,n1,n2</p>
+<p>根据题目One Secret, Two encryption猜到 gcd(n1,n2)!=1</p>
+<p>解密脚本:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">e1 = <span class="number">1666626632960368239001159408047765991270250042206244157447171188195657302933019501932101777999510001235736338843107709871785906749393004257614129802061081155861433722380145001537181142613515290138835765236002811689986472280762408157176437503021753061588746520433720734608953639111558556930490721517579994493088551013050835690019772600744317398218183883402192060480979979456469937863257781362521184578142129444122428832106721725409309113975986436241662107879085361014650716439042856013203440242834878648506244428367706708431121109714505981728529818874621868624754285069693368779495316600601299037277003994790396589299</span></span><br><span class="line">e2 = <span class="number">65537</span></span><br><span class="line">n1 = <span class="number">4850297138162223468826481623082440249579136876798312652735204698689613969008632545220976699170308454082390834742570718247804202060929493571642074679428565168405877110681518105667301785653517697684490982375078989886040451115082120928982588380914609273008153977907950532498605486225883973643141516024058315360572988744607134110254489421516026937249163493982681336628726033489124705657217768229058487155865265080427488028921879608338898933540825564889012166181346177276639828346376362168934208822467295673761876965864573164529336885250577357767314256581019474130651412100897839606491189424373959244023695669653213498329</span></span><br><span class="line">n2 = <span class="number">2367536768672000959668181171787295271898789288397672997134843418932405959946739637368044420319861797856771490573443003520137149324080217971836780570522258661419034481514883068092752166752967879497095564732505614751532330408675056285275354250157955321457579006360393218327164804951384290041956551855334492796719901818165788902547584563455747941517296875697241841177219635024461395596117584194226134777078874543699117761893699634303571421106917894215078938885999963580586824497040073241055890328794310025879014294051230590716562942538031883965317397728271589759718376073414632026801806560862906691989093298478752580277</span></span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(gmpy2.gcd(n1,n2))</span><br><span class="line">p11 = <span class="number">174410123761631337520799179808598127914184971978811796722414215239874114048347830609255805203105210941441708658356189056418366104015120153227123562166980882513945308613658062284844636341082646995916907680076101741743945938845994542592182491688095893467336553001430454260431413695816790105384153941685561590503</span></span><br><span class="line">p12 = n1 // p11</span><br><span class="line">p21 = <span class="number">174410123761631337520799179808598127914184971978811796722414215239874114048347830609255805203105210941441708658356189056418366104015120153227123562166980882513945308613658062284844636341082646995916907680076101741743945938845994542592182491688095893467336553001430454260431413695816790105384153941685561590503</span></span><br><span class="line">p22 = n2 // p21</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> rsa</span><br><span class="line">d2 = <span class="built_in">int</span>(gmpy2.invert(e2, (p21 - <span class="number">1</span>) * (p22 - <span class="number">1</span>)))</span><br><span class="line">Rsa = rsa.PrivateKey(n2, e2, d2, p21, p22)</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;G:\\Desktop\\flag_encry2&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    cipher1=f.read()</span><br><span class="line">    <span class="built_in">print</span>(rsa.decrypt(cipher2, Rsa))</span><br></pre></td></tr></table></figure>
 
-<p>结果:afctf{sec_is_everywhere}</p>
+<p>结果:b’OpenSSL is widely used\r\nflag is afctf{You_Know_0p3u55I}’</p>
 
       </div>
       
@@ -595,7 +594,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2021/07/11/AFCTF2018MagicNum/" target="_blank" title="AFCTF2018MagicNum">http://example.com/2021/07/11/AFCTF2018MagicNum/</a>
+    <a href="/2021/07/11/AFCTF2018One Secret, Two encryption/" target="_blank" title="One Secret, Two encryption">http://example.com/2021/07/11/AFCTF2018One Secret, Two encryption/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -613,38 +612,21 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2021/07/11/AFCTF2018One%20Secret,%20Two%20encryption/" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> Prev:
-        <div>One Secret, Two encryption</div>
-      </div>
-      
-      <!-- <div class="content">
-        [AFCTF2018]One Secret, Two encryption在线公钥解析网站:https://www.ss
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/1.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/07/09/Crypto/" class="post-nav-link">
+    <a href="/2021/07/11/AFCTF2018MagicNum/" class="post-nav-link">
       <div class="title">
         Next: <i class="fa fa-angle-right"></i>
-        <div>GKCTF 2021Random</div>
+        <div>AFCTF2018MagicNum</div>
       </div>
       <!-- <div class="content">
-        [GKCTF 2021]Randomflag是上述随机数生成后再生成一个32位（以位为单位）的随机数
-123456789
+        AFCTF2018MagicNum题目:where_is_flag
+72065910510177138000000000
       </div> -->
     </a>
   </div>
